@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <a>All Tasks</a>
+<style>
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
+</head>
+<body>
+
+<table style="width:100%">
+  <caption>Task Manager</caption>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @tasks.each do |task| %>
+
+  <tr>
+    <td><a href="/tasks/<%= task.id %>"><%= task.title %></a></td>
+    <td><%= task.description %></td>
+    <td><a href="/tasks/<%= task.id  %>/edit">Edit</a></td>
+    <td>
+      <a>
+        <form action="/tasks/<%= task.id %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="delete"/>
+        </form>
+      </a>
+    </td>
+  </tr>
+  <% end %>
+
+</table>
+
+</body>
+</html>
